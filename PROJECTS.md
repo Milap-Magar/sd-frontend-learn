@@ -22,7 +22,7 @@ For each project, write a short `DESIGN.md` before coding:
 - Scroll position restore on back navigation
 **Key topics:** virtualization, IntersectionObserver, normalization, optimistic UI
 
-## 2. Typeahead / Autocomplete Search
+## 2. Typeahead / Autocomplete Search [DONE] - [/product.tsx]
 **Question:** Design a search box for an e-commerce site with 1M products.
 - Debounce vs throttle; cancel stale requests (AbortController)
 - Client-side LRU cache keyed by query
@@ -137,7 +137,7 @@ For each project, write a short `DESIGN.md` before coding:
 ---
 
 ## Suggested order
-Beginner → 2, 3, 6, 11
+Beginner → 2[DONE], 3, 6, 11
 Intermediate → 1, 5, 8, 10, 14
 Advanced → 4, 7, 9, 12, 13, 15
 

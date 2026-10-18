@@ -1,8 +1,9 @@
 import { useState } from "react"
+import { useNavigate } from "react-router";
 import { useDebounce } from "~/hooks/useDebounce";
 import { useProductQuery } from "~/query/useProductQuery";
 
-interface Products {
+export interface Products {
     id: string,
     title: string,
     description: string,
@@ -14,12 +15,11 @@ interface Products {
 }
 
 export default function product(){
-    // CONST DATASETS
-    const DELAY: number = 1000;
     const [value, setValue] = useState<string>("");
+    const navigate = useNavigate();
 
     // handle search datasets without having a search button or click to api search rather than letting then hit
-    const debouncedValue = useDebounce(value, DELAY);
+    const debouncedValue = useDebounce(value, 1000);
 
     // search the values datasets
     const { isPending, isError, data, error }= useProductQuery(debouncedValue);
@@ -29,6 +29,10 @@ export default function product(){
     if(isError) return <>ERROOOORRR</>
 
     const products: Products[] = data;
+
+    function handleRedirectToDetails(id : string){
+        navigate(`${id}`)
+    }
 
     return(
     <section className="max-w-7xl w-full h-screen mx-auto">
@@ -49,8 +53,8 @@ export default function product(){
         <div className="flex flex-col justify-start items-start">
             <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg-grid-cols-6 gap-4">
                 {products.map((product) => (
-                    <li key={product.id} className="h-full mt-4">
-                        <div className="bg-white flex h-full flex-col p-2">
+                    <li key={product.id} className="h-full mt-4 cursor-pointer" onClick={()=>handleRedirectToDetails(product.id)}>
+                        <div className="bg-gray-200 rounded-2xl flex h-full flex-col p-2">
                             {/* Image */}
                               <figure>
                                 <img

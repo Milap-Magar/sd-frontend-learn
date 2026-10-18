@@ -6,3 +6,10 @@ export async function getProducts(debouncedValue: string) {
     // console.log("🚀 ~ getProducts ~ response:", response)
     return response.products;
 }
+
+// fetching the products using Id
+export async function getProductsById(id: string) {
+    const data = await api(`/products/${id}`);
+    // console.log("🚀 ~ getProducts ~ response:", data)
+    return data;
+}

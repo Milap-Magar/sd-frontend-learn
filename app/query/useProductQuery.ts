@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getProducts } from "~/services/product.services";
+import { getProducts, getProductsById } from "~/services/product.services";
 
 export function useProductQuery(debouncedValue: string){
     // destrucutre the required datasets
@@ -9,4 +9,14 @@ export function useProductQuery(debouncedValue: string){
     })
     // console.log("🚀 ~ useProductQuery ~ data:", data)
     return {isPending, isError, data, error }
+}
+
+
+export function useProductQueryById(id: string){
+    const { isPending, isError, error, data} = useQuery({
+        queryKey:['product-id', id],
+        queryFn: () => getProductsById(id),
+    })
+
+    return { isPending, isError, error, data } ;
 }
