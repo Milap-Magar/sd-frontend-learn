@@ -1,13 +1,26 @@
 import { useQuery } from "@tanstack/react-query";
-import { getProducts, getProductsById } from "~/services/product.services";
+import { getProducts, getProductsById, getProductsImages } from "~/services/product.services";
 
-export function useProductQuery(debouncedValue: string){
+interface responseQuery{
+    debouncedValue: string,
+    limit?: number,
+    skip?: number,
+}
+
+export function useProductImagesQuery(){
+    const { isPending, isError , data, error,} = useQuery({
+        queryKey:['products-images'],
+        queryFn: () => getProductsImages(),
+    })
+    return {isPending, isError, data, error }
+}
+
+export function useProductQuery({debouncedValue, limit, skip }: responseQuery){
     // destrucutre the required datasets
     const { isPending, isError, data, error } = useQuery({
-        queryKey:['products', debouncedValue],
-        queryFn: () => getProducts(debouncedValue),
+        queryKey:['products', debouncedValue, limit, skip],
+        queryFn: () => getProducts(debouncedValue, limit, skip),
     })
-    // console.log("🚀 ~ useProductQuery ~ data:", data)
     return {isPending, isError, data, error }
 }
 
@@ -17,6 +30,5 @@ export function useProductQueryById(id: string){
         queryKey:['product-id', id],
         queryFn: () => getProductsById(id),
     })
-
     return { isPending, isError, error, data } ;
 }

@@ -12,17 +12,22 @@ export interface Products {
     stock: number,
     discountPercentage: number,
     images: string[],
+    thumbnail: string,
 }
 
 export default function product(){
     const [value, setValue] = useState<string>("");
     const navigate = useNavigate();
 
+    // constants
+    const limit = 30;
+    const skip = 0;
+
     // handle search datasets without having a search button or click to api search rather than letting then hit
     const debouncedValue = useDebounce(value, 1000);
 
     // search the values datasets
-    const { isPending, isError, data, error }= useProductQuery(debouncedValue);
+    const { isPending, isError, data, error }= useProductQuery({debouncedValue, limit, skip});
 
     if(isPending) return <>LOADINGGG....</>
 
@@ -43,7 +48,7 @@ export default function product(){
                 type="text" 
                 value={value} 
                 onChange={(e)=> setValue(e.target.value)} 
-                className="w-96 p-4 border border-gray-400 rounded" 
+                className="w-96 p-4 border border-gray-400 rounded text-black " 
                 placeholder="Search Products..." />
                 
             {isError && <p>{error?.message}</p>}
