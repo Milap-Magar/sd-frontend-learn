@@ -6,5 +6,5 @@ export default [
     route("/products/all/:id", "./pages/product/productdetails.tsx"),
 
     // routes for image gallery / carousel
-    route("/image-gallery", "./pages/image-preview.tsx")
+    route("/image-gallery", "./pages/image/image-preview.tsx")
 ] satisfies RouteConfig;
