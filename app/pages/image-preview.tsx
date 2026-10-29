@@ -1,5 +1,5 @@
 import { useProductImagesQuery } from "~/query/useProductQuery"
-import type { Products } from "./product";
+import type { Products } from "./product/product";
 import { Link } from "react-router";
 
 export default function ImagePreview() {
