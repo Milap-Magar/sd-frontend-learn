@@ -11,6 +11,6 @@ export function meta({}: Route.MetaArgs) {
 export default function Home() {
   return (
   <div className="w-full min-h-screen">
-    <ImagePreview />
+    HOME PAGE
   </div>
 )};
