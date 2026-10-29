@@ -137,7 +137,7 @@ For each project, write a short `DESIGN.md` before coding:
 ---
 
 ## Suggested order
-Beginner → 2[DONE], 3, 6, 11
+Beginner → 2[DONE], 3[DONE], 6[DONE], 11
 Intermediate → 1, 5, 8, 10, 14
 Advanced → 4, 7, 9, 12, 13, 15
 

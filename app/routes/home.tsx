@@ -1,5 +1,4 @@
 import type { Route } from "./+types/home";
-import ImagePreview from "../pages/image-preview";
 
 export function meta({}: Route.MetaArgs) {
   return [
